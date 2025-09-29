@@ -500,73 +500,73 @@ diversidade Aplicativo() {
 
       {/* RODAPÉ */}
       <footer className="bg-slate-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-12">
-            {/* Logo e descrição */}
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <img 
-                  src="/Golden building logo design.png" 
-                  alt="SKYLINE Logo" 
-                  className="w-16 h-16 object-contain"
+        <dividir nome sim classe="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <dividir nome sim classe="grau md:grau-cols-3 lacuna-12">
+            {/* Logotipo e descrição */}
+            <dividir>
+              <dividir nome sim classe="itens flexíveis-espaço central-x-3 mb-4">
+                <imagem 
+                  fonte="/Design de logotipo de ensino dourado.png" 
+                  alt="Logotipo SKYLINE" 
+                  nome sim classe="w-16 h-16 objeto-conter"
                 />
-                <span className="text-2xl font-bold">SKYLINE</span>
-              </div>
-              <p className="text-gray-400 leading-relaxed">
-                Construindo o futuro através de projetos inovadores que se destacam 
-                no horizonte urbano.
+                <extensão nome sim classe="texto-2xl fonte-negrito">HORIZONTE</extensão>
+              </dividir>
+              <p nome sim classe="texto-cinza-400 levando-relaxado">
+ Construindo o futuro através de projetos inovadores que se desestacam 
+ sem horizonte urbano.
               </p>
-            </div>
+            </dividir>
 
             {/* Links rápidos */}
-            <div>
-              <h3 className="text-xl font-bold mb-6">Links Rápidos</h3>
-              <ul className="space-y-3">
+            <dividir>
+              <h3 nome sim classe="texto-xl fonte-negrito mb-6">Links Rápidos</h3>
+              <ul nome sim classe="espaço-y-3">
                 {[
-                  { label: 'Projetos', id: 'projetos' },
-                  { label: 'Sobre', id: 'sobre' },
-                  { label: 'Contato', id: 'contato' }
-                ].map((link) => (
-                  <li key={link.id}>
-                    <button
-                      onClick={() => scrollToSection(link.id)}
-                      className="text-gray-400 hover:text-sky-400 transition-colors"
+                  { rótulo: 'Projetos', id: 'projetos' },
+                  { rótulo: 'Sobre', id: 'sobre' },
+                  { rótulo: 'Contato', id: 'contato' }
+                ].mapa((link) => (
+                  <eu chave={link.id}>
+                    <botão
+                      ao clicar={() => rugido parágrafo a sessão(link.id)}
+ nome da classe="text-gray-400 hover:text-sky-400 núcleos de transição"
                     >
-                      {link.label}
-                    </button>
-                  </li>
+                      {link.rótulo}
+                    </botão>
+                  </ue>
                 ))}
               </ul>
-            </div>
+            </dividir>
 
             {/* Criadores */}
-            <div>
-              <h3 className="text-xl font-bold mb-6">Criadores</h3>
-              <div className="flex items-center space-x-4">
+            <dividir>
+              <h3 nome sim classe="texto-xl fonte-negrito mb-6">Criadores</h3>
+              <dividir nome sim classe="itens flexíveis-espaço central-x-4">
                 {/* TROQUE AQUI: Substitua pela foto do criador */}
-                <img 
-                  src="/Cópia de Cópia de cyberlock.png"
+                <imagem 
+                  fonte="blob:https://web.whatsapp.com/bf412211-97a5-4386-a25a-4f48eee5818d"
                   alt="João Felipe Nevs"
-                  className="w-16 h-16 rounded-full object-cover border-2 border-sky-400"
+                  nome sim classe="w-16 h-16 arredondado-pleno objeto-cobertura borda-2 borda-ceu-400"
                 />
-                <div>
-                  <h4 className="font-semibold">João Felipe Nevs</h4>
-                  <p className="text-gray-400 text-sm">Desenvolvimento & Design</p>
-                  <p className="text-gray-500 text-xs mt-1">SEST SENAT - MT Cuiabá</p>
-                </div>
-              </div>
-            </div>
-          </div>
+                <dividir>
+                  <h4 nome sim classe="fonte-semibold">João Felipe Nevs</h4>
+                  <p nome sim classe="texto-cinza-400 texto-sm">Desenvolvimento e Design</p>
+                  <p nome sim classe="texto-cinza-500 texto-xs mt-1">SEST SENAT - MT Cuiabá</p>
+                </dividir>
+              </dividir>
+            </dividir>
+          </dividir>
 
-          <div className="border-t border-gray-700 mt-12 pt-8 text-center">
-            <p className="text-gray-400">
-              © 2024 CYBERLOCK. Todos os direitos reservados.
+          <dividir nome sim classe="border-t border-gray-700 mt-12 pt-8 centro de texto">
+            <p nome sim classe="texto-cinza-400">
+ © CYBERLOCK 2024. Todos os direitos reservados.
             </p>
-          </div>
-        </div>
-      </footer>
-    </div>
+          </dividir>
+        </dividir>
+      </rodapé>
+    </dividir>
   );
 }
 
-export default App;
+exportar padrão Aplicativo;
