@@ -1,82 +1,82 @@
-importar Reagir, { estado de uso, efeito de uso } de 'reagir';
-importar { movimento } de 'movimento-de-quadro';
-importar { Menu, X, MapaPin, Paleta, Folha, Correio, Telefone, MapaPin como Ícone de Alfinete de Mapa, Seta Direita, Edifício2, Usuários, Prêmio } de 'reação lúcida';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Menu, X, MapPin, Palette, Leaf, Mail, Phone, MapPin as MapPinIcon, ArrowRight, Building2, Users, Award } from 'lucide-react';
 
-diversidade Aplicativo() {
-  const [isMenuAbrir, setIsMenuAbrir] = estado de uso(falso);
-  const [Seção ativa, definirSeçãoAtiva] = estado de uso('inicio');
+function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('inicio');
 
   // Navegação suave
-  const rugido parágrafo a sessão = (sessãoId: corda) => {
-    const elemento = documento.obterElementoPorId(sessãoId);
-    se (elemento) {
-      const alta fazer caboçalho = 80;
-      const elementoPosição = elemento.offsetTopo - alta fazer caboçalho;
-      Janela.rugido parágrafo({
-        topo: elementoPosição,
-        comportamento: 'suave'
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerHeight = 80;
+      const elementPosition = element.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
       });
     }
-    setIsMenuAbrir(falso);
+    setIsMenuOpen(false);
   };
 
   // Detectar seção ativa
-  efeito de uso(() => {
-    const lidar com rolagem = () => {
-      const seções = ['inicio', 'projetos', 'sobre', 'contato'];
-      const posição de rolagem = Janela.rolante + 100;
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['inicio', 'projetos', 'sobre', 'contato'];
+      const scrollPosition = window.scrollY + 100;
 
-      parágrafo (const sessão de seções) {
-        const elemento = documento.obterElementoPorId(sessão);
-        se (elemento) {
-          const { offsetTopo, alta de deslocamento } = elemento;
-          se (posição de rolagem >= offsetTopo && posição de rolagem < offsetTopo + alta de deslocamento) {
-            definirSeçãoAtiva(sessão);
-            quebrar;
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
           }
         }
       }
     };
 
-    Janela.addEventListener('rolar', lidar com rolagem);
-    retornar () => Janela.removedorEventListener('rolar', lidar com rolagem);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Animações
   const fadeInUp = {
-    inicial: { opacidade: 0, y: 60 },
-    animar: { opacidade: 1, y: 0 },
-    transição: { duração: 0,6 }
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
   };
 
-  const contador de cambaleio = {
-    animar: { transição: { cambalearCrianças: 0,1 } }
+  const staggerContainer = {
+    animate: { transition: { staggerChildren: 0.1 } }
   };
 
-  retornar (
-    <dividir nome sim classe="min-h-screen bg-branco">
-      {/* CABEÇALHO */}
-      <caboçalho nome sim classe="fixo top-0 espada-0 direita-0 z-50 bg-branco/95 fundo-borrão-sm borda-b borda-cinza-100">
-        <dividir nome sim classe="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <dividir nome sim classe="justificação flexível entre itens-centro h-20">
-            {/* Logotipo */}
-            <dividir nome sim classe="itens flexíveis-espaço central-x-3">
-              <imagem 
-                fonte="/Design de logotipo de ensino dourado.png" 
-                alt="Logotipo SKYLINE" 
-                nome sim classe="w-16 h-16 objeto-contém arredondado-xl"
+  return (
+    <div className="min-h-screen bg-white">
+      {/* HEADER */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo */}
+            <div className="flex items-center space-x-3">
+              <img 
+                src="/Golden building logo design.png" 
+                alt="SKYLINE Logo" 
+                className="w-16 h-16 object-contain"
               />
-              <extensão nome sim classe="texto-2xl fonte-negrito texto-ardósia-800">HORIZONTE</extensão>
-            </dividir>
+              <span className="text-2xl font-bold text-slate-800">SKYLINE</span>
+            </div>
 
-            {/* Menu da área de trabalho */}
-            <navegação nome sim classe="md oculto: itens flexíveis-espaço central-x-8">
+            {/* Desktop Menu */}
+            <nav className="hidden md:flex items-center space-x-8">
               {[
-                { id: 'projetos', rótulo: 'Projetos' },
-                { id: 'sobre', rótulo: 'Sobre' },
-                { id: 'contato', rótulo: 'Contato' }
-              ].mapa((item) => (
-                <botão
+                { id: 'projetos', label: 'Projetos' },
+                { id: 'sobre', label: 'Sobre' },
+                { id: 'contato', label: 'Contato' }
+              ].map((item) => (
+                <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`text-sm font-medium transition-colors hover:text-sky-600 ${
@@ -155,7 +155,7 @@ diversidade Aplicativo() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              <span className="text-sky-400">CYBERLOCK</span><br />
+              <span className="text-sky-400">SKYLINE</span> —<br />
               Projetos que se destacam<br />
               no horizonte
             </h1>
@@ -460,9 +460,9 @@ diversidade Aplicativo() {
                     <div>
                       <h4 className="font-semibold mb-1">Endereço</h4>
                       <p className="text-gray-300">
-                        Av. Miguel Sutil, 8000 - Sala 1205<br />
-                        Consil, Cuiabá - MT<br />
-                        CEP: 78048-800
+                        Av. Paulista, 1000 - Sala 1501<br />
+                        Bela Vista, São Paulo - SP<br />
+                        CEP: 01310-100
                       </p>
                     </div>
                   </div>
@@ -471,7 +471,7 @@ diversidade Aplicativo() {
                     <Phone className="text-sky-400 mt-1 flex-shrink-0" size={20} />
                     <div>
                       <h4 className="font-semibold mb-1">Telefone</h4>
-                      <p className="text-gray-300">(65) 3000-0000</p>
+                      <p className="text-gray-300">(11) 3000-0000</p>
                     </div>
                   </div>
 
@@ -479,7 +479,7 @@ diversidade Aplicativo() {
                     <Mail className="text-sky-400 mt-1 flex-shrink-0" size={20} />
                     <div>
                       <h4 className="font-semibold mb-1">E-mail</h4>
-                      <p className="text-gray-300">contato@cyberlock.com.br</p>
+                      <p className="text-gray-300">contato@skyline.com.br</p>
                     </div>
                   </div>
                 </div>
@@ -545,14 +545,13 @@ diversidade Aplicativo() {
               <div className="flex items-center space-x-4">
                 {/* TROQUE AQUI: Substitua pela foto do criador */}
                 <img 
-                  src="/Cópia de Cópia de cyberlock.png"
+                  src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face"
                   alt="João Felipe Nevs"
-                  className="w-16 h-16 rounded-full object-cover border-2 border-sky-400"
+                  className="w-16 h-16 rounded-full object-cover"
                 />
                 <div>
                   <h4 className="font-semibold">João Felipe Nevs</h4>
                   <p className="text-gray-400 text-sm">Desenvolvimento & Design</p>
-                  <p className="text-gray-500 text-xs mt-1">SEST SENAT - MT Cuiabá</p>
                 </div>
               </div>
             </div>
@@ -560,7 +559,7 @@ diversidade Aplicativo() {
 
           <div className="border-t border-gray-700 mt-12 pt-8 text-center">
             <p className="text-gray-400">
-              © 2024 CYBERLOCK. Todos os direitos reservados.
+              © 2024 SKYLINE. Todos os direitos reservados.
             </p>
           </div>
         </div>
