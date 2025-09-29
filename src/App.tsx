@@ -1,4 +1,4 @@
-importar Reagir, { estado de uso, efeito de uso } de 'reagir';
+importar Reagir, 
 importar { movimento } de 'movimento-de-quadro';
 importar { Menu, X, MapaPin, Paleta, Folha, Correio, Telefone, MapaPin como Ícone de Alfinete de Mapa, Seta Direita, Edifício2, Usuários, Prêmio } de 'reação lúcida';
 
@@ -12,7 +12,7 @@ diversidade Aplicativo() {
     se (elemento) {
       const alta fazer caboçalho = 80;
       const elementoPosição = elemento.offsetTopo - alta fazer caboçalho;
-      Janela.rugido parágrafo({
+ Janela.rugido parágrafo({
         topo: elementoPosição,
         comportamento: 'suave'
       });
@@ -21,24 +21,24 @@ diversidade Aplicativo() {
   };
 
   // Detectar seção ativa
-  efeito de uso(() => {
+ efeito de uso(() => {
     const lidar com rolagem = () => {
       const seções = ['inicio', 'projetos', 'sobre', 'contato'];
       const posição de rolagem = Janela.rolante + 100;
 
-      parágrafo (const sessão de seções) {
+      parágrafo (const sessão de sessões) {
         const elemento = documento.obterElementoPorId(sessão);
         se (elemento) {
           const { offsetTopo, alta de deslocamento } = elemento;
           se (posição de rolagem >= offsetTopo && posição de rolagem < offsetTopo + alta de deslocamento) {
             definirSeçãoAtiva(sessão);
-            quebrar;
+ quebrar;
           }
         }
       }
     };
 
-    Janela.addEventListener('rolar', lidar com rolagem);
+ Janela.addEventListener('rolar', lidar com rolagem);
     retornar () => Janela.removedorEventListener('rolar', lidar com rolagem);
   }, []);
 
@@ -77,21 +77,21 @@ diversidade Aplicativo() {
                 { id: 'contato', rótulo: 'Contato' }
               ].mapa((item) => (
                 <botão
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`text-sm font-medium transition-colors hover:text-sky-600 ${
-                    activeSection === item.id ? 'text-sky-600' : 'text-gray-700'
+                  chave={item.id}
+                  ao clicar={() => rolar para a seção(item.id)}
+                  nome da classe={`texto-sm fonte-médio transição-cores hover:texto-céu-600 ${
+ activeSection === item.id ? 'texto-céu-600' : 'texto-cinza-700'
                   }`}
                 >
-                  {item.label}
-                </button>
+                  {item.rótulo}
+                </botão>
               ))}
-              <button 
-                onClick={() => scrollToSection('contato')}
-                className="bg-sky-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-sky-700 transition-colors"
+              <botão 
+                ao clicar={() => rolar para a seção('contato')}
+                nome da classe="bg-sky-600 texto-branco px-6 py-2 arredondado-lg fonte-médio hover:bg-sky-700 transição-cores"
               >
-                Fale conosco
-              </button>
+ Fale conosco
+              </botão>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -485,21 +485,21 @@ diversidade Aplicativo() {
                 </div>
 
                 {/* TROQUE AQUI: Substitua pelo mapa da sua localização */}
-                <div className="mt-8">
-                  <img 
-                    src="https://images.pexels.com/photos/1008155/pexels-photo-1008155.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop"
+                <dividir nome sim classe="mt-8">
+                  <imagem 
+                    fonte="https://images.pexels.com/photos/1008155/pexels-photo-1008155.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop"
                     alt="Localização SKYLINE"
-                    className="w-full h-48 object-cover rounded-lg"
+                    nome sim classe="w-full h-48 tampa de objeto arredondada-lg"
                   />
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+                </dividir>
+              </dividir>
+            </movimento.div>
+          </dividir>
+        </dividir>
+      </sessão>
 
       {/* RODAPÉ */}
-      <footer className="bg-slate-900 text-white py-16">
+      <rodapé nome sim classe="bg-slate-900 texto-branco py-16">
         <dividir nome sim classe="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <dividir nome sim classe="grau md:grau-cols-3 lacuna-12">
             {/* Logotipo e descrição */}
@@ -544,8 +544,7 @@ diversidade Aplicativo() {
               <h3 nome sim classe="texto-xl fonte-negrito mb-6">Criadores</h3>
               <dividir nome sim classe="itens flexíveis-espaço central-x-4">
                 {/* TROQUE AQUI: Substitua pela foto do criador */}
-                <imagem nome sim classe="w-16 h-16 flex itens-centro justificar-centro arredondado-completo bg-cinza-300 borda-2 borda-ceu-400">
- fonteUser "bolha:https://web.whatsapp.com/bf412211-97a5-4386-a25a-4f48eee5818d"={32} className="texto-branco" />
+                <imagem nome sim classe="" />
 </dividir>
  />
                 <dividir>
