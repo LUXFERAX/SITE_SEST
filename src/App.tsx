@@ -544,11 +544,10 @@ diversidade Aplicativo() {
               <h3 nome sim classe="texto-xl fonte-negrito mb-6">Criadores</h3>
               <dividir nome sim classe="itens flexíveis-espaço central-x-4">
                 {/* TROQUE AQUI: Substitua pela foto do criador */}
-                <imagem 
-                  fonte="blob:https://web.whatsapp.com/bf412211-97a5-4386-a25a-4f48eee5818d"
-                  alt="João Felipe Nevs"
-                  nome sim classe="w-16 h-16 arredondado-pleno objeto-cobertura borda-2 borda-ceu-400"
-                />
+                <imagem nome sim classe="w-16 h-16 flex itens-centro justificar-centro arredondado-completo bg-cinza-300 borda-2 borda-ceu-400">
+ fonteUser "bolha:https://web.whatsapp.com/bf412211-97a5-4386-a25a-4f48eee5818d"={32} className="texto-branco" />
+</dividir>
+ />
                 <dividir>
                   <h4 nome sim classe="fonte-semibold">João Felipe Nevs</h4>
                   <p nome sim classe="texto-cinza-400 texto-sm">Desenvolvimento e Design</p>
