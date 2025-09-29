@@ -64,7 +64,7 @@ function App() {
               <img 
                 src="/Golden building logo design.png" 
                 alt="SKYLINE Logo" 
-                className="w-16 h-16 object-contain"
+                className="w-16 h-16 object-contain rounded-xl"
               />
               <span className="text-2xl font-bold text-slate-800">SKYLINE</span>
             </div>
@@ -155,7 +155,7 @@ function App() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              <span className="text-sky-400">SKYLINE</span> —<br />
+              <span className="text-sky-400">CYBERLOCK</span><br />
               Projetos que se destacam<br />
               no horizonte
             </h1>
@@ -460,9 +460,9 @@ function App() {
                     <div>
                       <h4 className="font-semibold mb-1">Endereço</h4>
                       <p className="text-gray-300">
-                        Av. Paulista, 1000 - Sala 1501<br />
-                        Bela Vista, São Paulo - SP<br />
-                        CEP: 01310-100
+                        Av. Miguel Sutil, 8000 - Sala 1205<br />
+                        Consil, Cuiabá - MT<br />
+                        CEP: 78048-800
                       </p>
                     </div>
                   </div>
@@ -471,7 +471,7 @@ function App() {
                     <Phone className="text-sky-400 mt-1 flex-shrink-0" size={20} />
                     <div>
                       <h4 className="font-semibold mb-1">Telefone</h4>
-                      <p className="text-gray-300">(11) 3000-0000</p>
+                      <p className="text-gray-300">(65) 3000-0000</p>
                     </div>
                   </div>
 
@@ -479,7 +479,7 @@ function App() {
                     <Mail className="text-sky-400 mt-1 flex-shrink-0" size={20} />
                     <div>
                       <h4 className="font-semibold mb-1">E-mail</h4>
-                      <p className="text-gray-300">contato@skyline.com.br</p>
+                      <p className="text-gray-300">contato@cyberlock.com.br</p>
                     </div>
                   </div>
                 </div>
@@ -545,13 +545,14 @@ function App() {
               <div className="flex items-center space-x-4">
                 {/* TROQUE AQUI: Substitua pela foto do criador */}
                 <img 
-                  src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face"
+                  src="/Cópia de Cópia de cyberlock.png"
                   alt="João Felipe Nevs"
-                  className="w-16 h-16 rounded-full object-cover"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-sky-400"
                 />
                 <div>
                   <h4 className="font-semibold">João Felipe Nevs</h4>
                   <p className="text-gray-400 text-sm">Desenvolvimento & Design</p>
+                  <p className="text-gray-500 text-xs mt-1">SEST SENAT - MT Cuiabá</p>
                 </div>
               </div>
             </div>
@@ -559,7 +560,7 @@ function App() {
 
           <div className="border-t border-gray-700 mt-12 pt-8 text-center">
             <p className="text-gray-400">
-              © 2024 SKYLINE. Todos os direitos reservados.
+              © 2024 CYBERLOCK. Todos os direitos reservados.
             </p>
           </div>
         </div>
