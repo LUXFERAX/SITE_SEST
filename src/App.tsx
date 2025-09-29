@@ -1,82 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, X, MapPin, Palette, Leaf, Mail, Phone, MapPin as MapPinIcon, ArrowRight, Building2, Users, Award } from 'lucide-react';
+importar Reagir, { estado de uso, efeito de uso } de 'reagir';
+importar { movimento } de 'movimento-de-quadro';
+importar { Menu, X, MapaPin, Paleta, Folha, Correio, Telefone, MapaPin como Ícone de Alfinete de Mapa, Seta Direita, Edifício2, Usuários, Prêmio } de 'reação lúcida';
 
-function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('inicio');
+diversidade Aplicativo() {
+  const [isMenuAbrir, setIsMenuAbrir] = estado de uso(falso);
+  const [Seção ativa, definirSeçãoAtiva] = estado de uso('inicio');
 
   // Navegação suave
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerHeight = 80;
-      const elementPosition = element.offsetTop - headerHeight;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
+  const rugido parágrafo a sessão = (sessãoId: corda) => {
+    const elemento = documento.obterElementoPorId(sessãoId);
+    se (elemento) {
+      const alta fazer caboçalho = 80;
+      const elementoPosição = elemento.offsetTopo - alta fazer caboçalho;
+      Janela.rugido parágrafo({
+        topo: elementoPosição,
+        comportamento: 'suave'
       });
     }
-    setIsMenuOpen(false);
+    setIsMenuAbrir(falso);
   };
 
   // Detectar seção ativa
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['inicio', 'projetos', 'sobre', 'contato'];
-      const scrollPosition = window.scrollY + 100;
+  efeito de uso(() => {
+    const lidar com rolagem = () => {
+      const seções = ['inicio', 'projetos', 'sobre', 'contato'];
+      const posição de rolagem = Janela.rolante + 100;
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
+      parágrafo (const sessão de seções) {
+        const elemento = documento.obterElementoPorId(sessão);
+        se (elemento) {
+          const { offsetTopo, alta de deslocamento } = elemento;
+          se (posição de rolagem >= offsetTopo && posição de rolagem < offsetTopo + alta de deslocamento) {
+            definirSeçãoAtiva(sessão);
+            quebrar;
           }
         }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    Janela.addEventListener('rolar', lidar com rolagem);
+    retornar () => Janela.removedorEventListener('rolar', lidar com rolagem);
   }, []);
 
   // Animações
   const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    inicial: { opacidade: 0, y: 60 },
+    animar: { opacidade: 1, y: 0 },
+    transição: { duração: 0,6 }
   };
 
-  const staggerContainer = {
-    animate: { transition: { staggerChildren: 0.1 } }
+  const contador de cambaleio = {
+    animar: { transição: { cambalearCrianças: 0,1 } }
   };
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <img 
-                src="/Golden building logo design.png" 
-                alt="SKYLINE Logo" 
-                className="w-16 h-16 object-contain rounded-xl"
+  retornar (
+    <dividir nome sim classe="min-h-screen bg-branco">
+      {/* CABEÇALHO */}
+      <caboçalho nome sim classe="fixo top-0 espada-0 direita-0 z-50 bg-branco/95 fundo-borrão-sm borda-b borda-cinza-100">
+        <dividir nome sim classe="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <dividir nome sim classe="justificação flexível entre itens-centro h-20">
+            {/* Logotipo */}
+            <dividir nome sim classe="itens flexíveis-espaço central-x-3">
+              <imagem 
+                fonte="/Design de logotipo de ensino dourado.png" 
+                alt="Logotipo SKYLINE" 
+                nome sim classe="w-16 h-16 objeto-contém arredondado-xl"
               />
-              <span className="text-2xl font-bold text-slate-800">SKYLINE</span>
-            </div>
+              <extensão nome sim classe="texto-2xl fonte-negrito texto-ardósia-800">HORIZONTE</extensão>
+            </dividir>
 
-            {/* Desktop Menu */}
-            <nav className="hidden md:flex items-center space-x-8">
+            {/* Menu da área de trabalho */}
+            <navegação nome sim classe="md oculto: itens flexíveis-espaço central-x-8">
               {[
-                { id: 'projetos', label: 'Projetos' },
-                { id: 'sobre', label: 'Sobre' },
-                { id: 'contato', label: 'Contato' }
-              ].map((item) => (
-                <button
+                { id: 'projetos', rótulo: 'Projetos' },
+                { id: 'sobre', rótulo: 'Sobre' },
+                { id: 'contato', rótulo: 'Contato' }
+              ].mapa((item) => (
+                <botão
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`text-sm font-medium transition-colors hover:text-sky-600 ${
