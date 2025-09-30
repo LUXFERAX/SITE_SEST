@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Menu, X, MapPin, Palette, Leaf, Mail, Phone, MapPin as MapPinIcon, ArrowRight, Building2, Users, Award } from 'lucide-react';
 
 function App() {
@@ -43,16 +42,6 @@ function App() {
   }, []);
 
   // Animações
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
-
-  const staggerContainer = {
-    animate: { transition: { staggerChildren: 0.1 } }
-  };
-
   return (
     <div className="min-h-screen bg-white">
       {/* HEADER */}
@@ -61,26 +50,29 @@ function App() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <img 
-                src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop" 
-                alt="Logo CYBERLOCK" 
-                className="w-16 h-16 object-contain rounded-2xl"
-              />
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="text-white font-bold">
+                  <div className="flex items-center justify-center space-x-1">
+                    <div className="w-4 h-4 bg-blue-300 rounded transform rotate-45"></div>
+                    <div className="w-4 h-4 bg-cyan-300 rounded transform -rotate-12"></div>
+                  </div>
+                </div>
+              </div>
               <span className="text-2xl font-bold text-slate-800">CYBERLOCK</span>
             </div>
 
             {/* Menu da área de trabalho */}
             <nav className="hidden md:flex items-center space-x-8">
               {[
-                { id: 'projetos', label: 'Projetos' },
+                { id: 'projetos', label: 'Serviços' },
                 { id: 'sobre', label: 'Sobre' },
                 { id: 'contato', label: 'Contato' }
               ].map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-sm font-medium transition-colors hover:text-sky-600 ${
-                    activeSection === item.id ? 'text-sky-600' : 'text-gray-700'
+                  className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                    activeSection === item.id ? 'text-blue-600' : 'text-gray-700'
                   }`}
                 >
                   {item.label}
@@ -88,7 +80,7 @@ function App() {
               ))}
               <button 
                 onClick={() => scrollToSection('contato')}
-                className="bg-sky-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-sky-700 transition-colors"
+                className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-cyan-600 transition-all"
               >
                 Fale conosco
               </button>
@@ -97,7 +89,7 @@ function App() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden text-gray-700 hover:text-sky-600 transition-colors"
+              className="md:hidden text-gray-700 hover:text-blue-600 transition-colors"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -106,33 +98,29 @@ function App() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden bg-white border-t border-gray-100"
-          >
+          <div className="md:hidden bg-white border-t border-gray-100">
             <div className="px-4 py-4 space-y-3">
               {[
-                { id: 'projetos', label: 'Projetos' },
+                { id: 'projetos', label: 'Serviços' },
                 { id: 'sobre', label: 'Sobre' },
                 { id: 'contato', label: 'Contato' }
               ].map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left text-gray-700 hover:text-sky-600 py-2 transition-colors"
+                  className="block w-full text-left text-gray-700 hover:text-blue-600 py-2 transition-colors"
                 >
                   {item.label}
                 </button>
               ))}
               <button 
                 onClick={() => scrollToSection('contato')}
-                className="w-full bg-sky-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-sky-700 transition-colors"
+                className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-cyan-600 transition-all"
               >
                 Fale conosco
               </button>
             </div>
-          </motion.div>
+          </div>
         )}
       </header>
 
@@ -149,134 +137,104 @@ function App() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              <span className="text-sky-400">CYBERLOCK</span><br />
+              <span className="text-cyan-400">CYBERLOCK</span><br />
               Projetos que se destacam<br />
               no horizonte
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Construímos empreendimentos únicos que transformam paisagens urbanas 
-              e criam novos marcos na cidade
+              A CYBERLOCK é uma empresa de serviços digitais que combina inovação 
+              e excelência tecnológica em cada projeto
             </p>
             <button 
               onClick={() => scrollToSection('projetos')}
-              className="bg-sky-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-sky-700 transition-all transform hover:scale-105 inline-flex items-center gap-2"
+              className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-cyan-600 transition-all transform hover:scale-105 inline-flex items-center gap-2"
             >
-              Conheça nossos projetos
+              Conheça nossos serviços
               <ArrowRight size={20} />
             </button>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* SEÇÃO DIFERENCIAIS */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
               Nossos Diferenciais
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               O que nos torna únicos no mercado imobiliário
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-8"
-          >
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: MapPin,
-                title: "Localização estratégica",
-                description: "Nossos empreendimentos são estrategicamente posicionados nas melhores regiões da cidade, garantindo valorização constante."
+                icon: Building2,
+                title: "Desenvolvimento Web",
+                description: "Criamos sites e aplicações web modernas, responsivas e otimizadas para oferecer a melhor experiência aos seus usuários."
               },
               {
-                icon: Palette,
-                title: "Design moderno",
-                description: "Arquitetura contemporânea e inovadora, com projetos assinados pelos melhores escritórios do país."
+                icon: Users,
+                title: "Apps Mobile",
+                description: "Desenvolvemos aplicativos móveis nativos e híbridos para iOS e Android, conectando sua marca aos clientes."
               },
               {
-                icon: Leaf,
-                title: "Sustentabilidade",
-                description: "Comprometimento com o meio ambiente através de tecnologias sustentáveis e práticas ecológicas em todos os projetos."
+                icon: Award,
+                title: "Transformação Digital",
+                description: "Consultoria especializada para digitalizar processos e implementar soluções tecnológicas inovadoras em sua empresa."
               }
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUp}
                 className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
-                <div className="w-16 h-16 bg-sky-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-sky-600 transition-colors">
-                  <item.icon className="text-sky-600 group-hover:text-white transition-colors" size={32} />
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center mb-6 group-hover:from-blue-600 group-hover:to-cyan-500 transition-all">
+                  <item.icon className="text-blue-600 group-hover:text-white transition-colors" size={32} />
                 </div>
                 <h3 className="text-xl font-bold text-slate-800 mb-4">{item.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{item.description}</p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* SEÇÃO PROJETOS */}
       <section id="projetos" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
               Nossos Projetos
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Empreendimentos que redefinem o conceito de morar bem
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-8"
-          >
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                image: "https://images.pexels.com/photos/1694360/pexels-photo-1694360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
-                title: "Skyline Residencial",
-                description: "Apartamentos de alto padrão com vista panorâmica da cidade. 3 e 4 quartos com acabamentos de primeira linha."
+                image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+                title: "E-commerce Moderno",
+                description: "Plataforma de vendas online completa com sistema de pagamento integrado e painel administrativo avançado."
               },
               {
-                image: "https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
-                title: "Skyline Corporate",
-                description: "Salas comerciais modernas em uma das regiões mais valorizadas, ideal para empresas que buscam prestígio."
+                image: "https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+                title: "App de Delivery",
+                description: "Aplicativo móvel para delivery com geolocalização, pagamento online e sistema de avaliações em tempo real."
               },
               {
-                image: "https://images.pexels.com/photos/1642125/pexels-photo-1642125.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
-                title: "Skyline Garden",
-                description: "Casas em condomínio fechado com amplas áreas verdes, oferecendo qualidade de vida e segurança."
+                image: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
+                title: "Sistema Corporativo",
+                description: "Dashboard empresarial com análise de dados, relatórios automatizados e integração com APIs externas."
               }
             ].map((project, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={fadeInUp}
                 className="group cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-2xl mb-6">
@@ -289,9 +247,9 @@ function App() {
                 </div>
                 <h3 className="text-2xl font-bold text-slate-800 mb-3">{project.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{project.description}</p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -299,45 +257,40 @@ function App() {
       <section id="sobre" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <div>
               <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
                 Sobre a CYBERLOCK
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Fundada com a visão de transformar a paisagem urbana, a CYBERLOCK é uma construtora 
-                que combina tradição, inovação e excelência em cada projeto.
+                Fundada com a visão de transformar o mundo digital, a CYBERLOCK é uma empresa de tecnologia 
+                que combina criatividade, inovação e excelência técnica em cada projeto.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Nossa experiência de mais de duas décadas no mercado imobiliário nos permite 
-                entregar empreendimentos que não apenas atendem, mas superam as expectativas 
+                Nossa experiência no desenvolvimento de soluções digitais nos permite 
+                entregar projetos que não apenas atendem, mas superam as expectativas 
                 dos nossos clientes.
               </p>
 
               <div className="grid grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
-                  <div className="flex items-center justify-center w-12 h-12 bg-sky-600 rounded-lg mb-2 mx-auto">
+                  <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg mb-2 mx-auto">
                     <Building2 className="text-white" size={24} />
                   </div>
-                  <div className="text-2xl font-bold text-slate-800">50+</div>
+                  <div className="text-2xl font-bold text-slate-800">100+</div>
                   <div className="text-sm text-gray-600">Projetos</div>
                 </div>
                 <div className="text-center">
-                  <div className="flex items-center justify-center w-12 h-12 bg-sky-600 rounded-lg mb-2 mx-auto">
+                  <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg mb-2 mx-auto">
                     <Users className="text-white" size={24} />
                   </div>
-                  <div className="text-2xl font-bold text-slate-800">5000+</div>
+                  <div className="text-2xl font-bold text-slate-800">200+</div>
                   <div className="text-sm text-gray-600">Clientes</div>
                 </div>
                 <div className="text-center">
-                  <div className="flex items-center justify-center w-12 h-12 bg-sky-600 rounded-lg mb-2 mx-auto">
+                  <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg mb-2 mx-auto">
                     <Award className="text-white" size={24} />
                   </div>
-                  <div className="text-2xl font-bold text-slate-800">20+</div>
+                  <div className="text-2xl font-bold text-slate-800">15+</div>
                   <div className="text-sm text-gray-600">Prêmios</div>
                 </div>
               </div>
@@ -352,28 +305,23 @@ function App() {
                   projeto de conclusão do curso de desenvolvimento web.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative"
-            >
+            <div className="relative">
               <img 
-                src="https://images.pexels.com/photos/3862365/pexels-photo-3862365.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop"
+                src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop"
                 alt="Sobre a CYBERLOCK"
                 className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               />
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-3xl flex items-center justify-center shadow-xl">
-                <img 
-                  src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=96&h=96&fit=crop" 
-                  alt="CYBERLOCK Logo" 
-                  className="w-24 h-24 object-contain rounded-2xl"
-                />
+                <div className="text-white font-bold text-lg">
+                  <div className="flex items-center justify-center space-x-1">
+                    <div className="w-8 h-8 bg-blue-400 rounded transform rotate-45"></div>
+                    <div className="w-8 h-8 bg-cyan-400 rounded transform -rotate-12"></div>
+                  </div>
+                </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -478,7 +426,7 @@ function App() {
                     <Phone className="text-cyan-400 mt-1 flex-shrink-0" size={20} />
                     <div>
                       <h4 className="font-semibold mb-1">Telefone</h4>
-                      <p className="text-gray-300">(65) 3000-0000</p>
+                      <p className="text-gray-300">(65) 99999-9999</p>
                     </div>
                   </div>
 
@@ -511,16 +459,19 @@ function App() {
             {/* Logo e descrição */}
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <img 
-                  src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop" 
-                  alt="Logo CYBERLOCK" 
-                  className="w-16 h-16 object-contain rounded-2xl"
-                />
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center">
+                  <div className="text-white font-bold">
+                    <div className="flex items-center justify-center space-x-1">
+                      <div className="w-4 h-4 bg-blue-300 rounded transform rotate-45"></div>
+                      <div className="w-4 h-4 bg-cyan-300 rounded transform -rotate-12"></div>
+                    </div>
+                  </div>
+                </div>
                 <span className="text-2xl font-bold">CYBERLOCK</span>
               </div>
               <p className="text-gray-400 leading-relaxed">
-                Construindo o futuro através de projetos inovadores que se destacam 
-                no horizonte urbano.
+                Construindo o futuro digital através de soluções tecnológicas inovadoras 
+                que transformam negócios e conectam pessoas.
               </p>
             </div>
 
@@ -529,7 +480,7 @@ function App() {
               <h3 className="text-xl font-bold mb-6">Links Rápidos</h3>
               <ul className="space-y-3">
                 {[
-                  { label: 'Projetos', id: 'projetos' },
+                  { label: 'Serviços', id: 'projetos' },
                   { label: 'Sobre', id: 'sobre' },
                   { label: 'Contato', id: 'contato' }
                 ].map((link) => (
@@ -549,11 +500,9 @@ function App() {
             <div>
               <h3 className="text-xl font-bold mb-6">Criadores</h3>
               <div className="flex items-center space-x-4">
-                <img 
-                  src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop"
-                  alt="João Felipe Nevs"
-                  className="w-16 h-16 object-cover rounded-full border-2 border-cyan-400"
-                />
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-full flex items-center justify-center border-2 border-cyan-400">
+                  <span className="text-white font-bold text-xl">JN</span>
+                </div>
                 <div>
                   <h4 className="font-semibold">João Felipe Nevs</h4>
                   <p className="text-gray-400 text-sm">Desenvolvimento e Design</p>
@@ -565,7 +514,7 @@ function App() {
 
           <div className="border-t border-gray-700 mt-12 pt-8 text-center">
             <p className="text-gray-400">
-              © CYBERLOCK 2024. Todos os direitos reservados.
+              © CYBERLOCK 2025. Todos os direitos reservados.
             </p>
           </div>
         </div>
