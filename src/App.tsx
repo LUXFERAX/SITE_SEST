@@ -1,97 +1,97 @@
-importar Reagir, 
-importar { movimento } de 'movimento-de-quadro';
-importar { Menu, X, MapaPin, Paleta, Folha, Correio, Telefone, MapaPin como Ícone de Alfinete de Mapa, Seta Direita, Edifício2, Usuários, Prêmio } de 'reação lúcida';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Menu, X, MapPin, Palette, Leaf, Mail, Phone, MapPin as MapPinIcon, ArrowRight, Building2, Users, Award } from 'lucide-react';
 
-diversidade Aplicativo() {
-  const [isMenuAbrir, setIsMenuAbrir] = estado de uso(falso);
-  const [Seção ativa, definirSeçãoAtiva] = estado de uso('inicio');
+function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('inicio');
 
   // Navegação suave
-  const rugido parágrafo a sessão = (sessãoId: corda) => {
-    const elemento = documento.obterElementoPorId(sessãoId);
-    se (elemento) {
-      const alta fazer caboçalho = 80;
-      const elementoPosição = elemento.offsetTopo - alta fazer caboçalho;
- Janela.rugido parágrafo({
-        topo: elementoPosição,
-        comportamento: 'suave'
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerHeight = 80;
+      const elementPosition = element.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
       });
     }
-    setIsMenuAbrir(falso);
+    setIsMenuOpen(false);
   };
 
   // Detectar seção ativa
- efeito de uso(() => {
-    const lidar com rolagem = () => {
-      const seções = ['inicio', 'projetos', 'sobre', 'contato'];
-      const posição de rolagem = Janela.rolante + 100;
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['inicio', 'projetos', 'sobre', 'contato'];
+      const scrollPosition = window.scrollY + 100;
 
-      parágrafo (const sessão de sessões) {
-        const elemento = documento.obterElementoPorId(sessão);
-        se (elemento) {
-          const { offsetTopo, alta de deslocamento } = elemento;
-          se (posição de rolagem >= offsetTopo && posição de rolagem < offsetTopo + alta de deslocamento) {
-            definirSeçãoAtiva(sessão);
- quebrar;
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
           }
         }
       }
     };
 
- Janela.addEventListener('rolar', lidar com rolagem);
-    retornar () => Janela.removedorEventListener('rolar', lidar com rolagem);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Animações
   const fadeInUp = {
-    inicial: { opacidade: 0, y: 60 },
-    animar: { opacidade: 1, y: 0 },
-    transição: { duração: 0,6 }
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
   };
 
-  const contador de cambaleio = {
-    animar: { transição: { cambalearCrianças: 0,1 } }
+  const staggerContainer = {
+    animate: { transition: { staggerChildren: 0.1 } }
   };
 
-  retornar (
-    <dividir nome sim classe="min-h-screen bg-branco">
-      {/* CABEÇALHO */}
-      <caboçalho nome sim classe="fixo top-0 espada-0 direita-0 z-50 bg-branco/95 fundo-borrão-sm borda-b borda-cinza-100">
-        <dividir nome sim classe="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <dividir nome sim classe="justificação flexível entre itens-centro h-20">
-            {/* Logotipo */}
-            <dividir nome sim classe="itens flexíveis-espaço central-x-3">
-              <imagem 
-                fonte="/Design de logotipo de ensino dourado.png" 
-                alt="Logotipo SKYLINE" 
-                nome sim classe="w-16 h-16 objeto-contém arredondado-xl"
+  return (
+    <div className="min-h-screen bg-white">
+      {/* HEADER */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo */}
+            <div className="flex items-center space-x-3">
+              <img 
+                src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop" 
+                alt="Logo CYBERLOCK" 
+                className="w-16 h-16 object-contain rounded-2xl"
               />
-              <extensão nome sim classe="texto-2xl fonte-negrito texto-ardósia-800">HORIZONTE</extensão>
-            </dividir>
+              <span className="text-2xl font-bold text-slate-800">CYBERLOCK</span>
+            </div>
 
             {/* Menu da área de trabalho */}
-            <navegação nome sim classe="md oculto: itens flexíveis-espaço central-x-8">
+            <nav className="hidden md:flex items-center space-x-8">
               {[
-                { id: 'projetos', rótulo: 'Projetos' },
-                { id: 'sobre', rótulo: 'Sobre' },
-                { id: 'contato', rótulo: 'Contato' }
-              ].mapa((item) => (
-                <botão
-                  chave={item.id}
-                  ao clicar={() => rolar para a seção(item.id)}
-                  nome da classe={`texto-sm fonte-médio transição-cores hover:texto-céu-600 ${
- activeSection === item.id ? 'texto-céu-600' : 'texto-cinza-700'
+                { id: 'projetos', label: 'Projetos' },
+                { id: 'sobre', label: 'Sobre' },
+                { id: 'contato', label: 'Contato' }
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`text-sm font-medium transition-colors hover:text-sky-600 ${
+                    activeSection === item.id ? 'text-sky-600' : 'text-gray-700'
                   }`}
                 >
-                  {item.rótulo}
-                </botão>
+                  {item.label}
+                </button>
               ))}
-              <botão 
-                ao clicar={() => rolar para a seção('contato')}
-                nome da classe="bg-sky-600 texto-branco px-6 py-2 arredondado-lg fonte-médio hover:bg-sky-700 transição-cores"
+              <button 
+                onClick={() => scrollToSection('contato')}
+                className="bg-sky-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-sky-700 transition-colors"
               >
- Fale conosco
-              </botão>
+                Fale conosco
+              </button>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -138,7 +138,7 @@ diversidade Aplicativo() {
 
       {/* HERO SECTION */}
       <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image - TROQUE AQUI: Substitua pela sua imagem de fundo */}
+        {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -259,19 +259,16 @@ diversidade Aplicativo() {
           >
             {[
               {
-                // TROQUE AQUI: Substitua pelas imagens dos seus projetos
                 image: "https://images.pexels.com/photos/1694360/pexels-photo-1694360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
                 title: "Skyline Residencial",
                 description: "Apartamentos de alto padrão com vista panorâmica da cidade. 3 e 4 quartos com acabamentos de primeira linha."
               },
               {
-                // TROQUE AQUI: Substitua pelas imagens dos seus projetos
                 image: "https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
                 title: "Skyline Corporate",
                 description: "Salas comerciais modernas em uma das regiões mais valorizadas, ideal para empresas que buscam prestígio."
               },
               {
-                // TROQUE AQUI: Substitua pelas imagens dos seus projetos
                 image: "https://images.pexels.com/photos/1642125/pexels-photo-1642125.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
                 title: "Skyline Garden",
                 description: "Casas em condomínio fechado com amplas áreas verdes, oferecendo qualidade de vida e segurança."
@@ -309,10 +306,10 @@ diversidade Aplicativo() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-                Sobre a SKYLINE
+                Sobre a CYBERLOCK
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Fundada com a visão de transformar a paisagem urbana, a SKYLINE é uma construtora 
+                Fundada com a visão de transformar a paisagem urbana, a CYBERLOCK é uma construtora 
                 que combina tradição, inovação e excelência em cada projeto.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
@@ -344,6 +341,17 @@ diversidade Aplicativo() {
                   <div className="text-sm text-gray-600">Prêmios</div>
                 </div>
               </div>
+
+              <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-100">
+                <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                  Projeto Acadêmico
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Esta apresentação foi desenvolvida por um grupo de alunos do 
+                  <strong className="text-blue-600"> SEST SENAT - MT Cuiabá</strong> como 
+                  projeto de conclusão do curso de desenvolvimento web.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
@@ -353,17 +361,16 @@ diversidade Aplicativo() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              {/* TROQUE AQUI: Substitua pela imagem sobre a empresa */}
               <img 
                 src="https://images.pexels.com/photos/3862365/pexels-photo-3862365.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop"
-                alt="Sobre a SKYLINE"
+                alt="Sobre a CYBERLOCK"
                 className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               />
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-sky-600 rounded-2xl flex items-center justify-center">
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-3xl flex items-center justify-center shadow-xl">
                 <img 
-                  src="/Golden building logo design.png" 
-                  alt="SKYLINE Logo" 
-                  className="w-24 h-24 object-contain"
+                  src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=96&h=96&fit=crop" 
+                  alt="CYBERLOCK Logo" 
+                  className="w-24 h-24 object-contain rounded-2xl"
                 />
               </div>
             </motion.div>
@@ -451,12 +458,12 @@ diversidade Aplicativo() {
               transition={{ duration: 0.6 }}
               className="lg:pl-8"
             >
-              <div className="bg-slate-800 rounded-2xl p-8 text-white h-fit">
+              <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 text-white h-fit">
                 <h3 className="text-2xl font-bold mb-6">Informações de Contato</h3>
                 
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <MapPinIcon className="text-sky-400 mt-1 flex-shrink-0" size={20} />
+                    <MapPinIcon className="text-cyan-400 mt-1 flex-shrink-0" size={20} />
                     <div>
                       <h4 className="font-semibold mb-1">Endereço</h4>
                       <p className="text-gray-300">
@@ -468,7 +475,7 @@ diversidade Aplicativo() {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <Phone className="text-sky-400 mt-1 flex-shrink-0" size={20} />
+                    <Phone className="text-cyan-400 mt-1 flex-shrink-0" size={20} />
                     <div>
                       <h4 className="font-semibold mb-1">Telefone</h4>
                       <p className="text-gray-300">(65) 3000-0000</p>
@@ -476,7 +483,7 @@ diversidade Aplicativo() {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <Mail className="text-sky-400 mt-1 flex-shrink-0" size={20} />
+                    <Mail className="text-cyan-400 mt-1 flex-shrink-0" size={20} />
                     <div>
                       <h4 className="font-semibold mb-1">E-mail</h4>
                       <p className="text-gray-300">contato@cyberlock.com.br</p>
@@ -484,87 +491,87 @@ diversidade Aplicativo() {
                   </div>
                 </div>
 
-                {/* TROQUE AQUI: Substitua pelo mapa da sua localização */}
-                <dividir nome sim classe="mt-8">
-                  <imagem 
-                    fonte="https://images.pexels.com/photos/1008155/pexels-photo-1008155.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop"
-                    alt="Localização SKYLINE"
-                    nome sim classe="w-full h-48 tampa de objeto arredondada-lg"
+                <div className="mt-8">
+                  <img 
+                    src="https://images.pexels.com/photos/1008155/pexels-photo-1008155.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop"
+                    alt="Localização CYBERLOCK"
+                    className="w-full h-48 object-cover rounded-lg"
                   />
-                </dividir>
-              </dividir>
-            </movimento.div>
-          </dividir>
-        </dividir>
-      </sessão>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
-      {/* RODAPÉ */}
-      <rodapé nome sim classe="bg-slate-900 texto-branco py-16">
-        <dividir nome sim classe="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <dividir nome sim classe="grau md:grau-cols-3 lacuna-12">
-            {/* Logotipo e descrição */}
-            <dividir>
-              <dividir nome sim classe="itens flexíveis-espaço central-x-3 mb-4">
-                <imagem 
-                  fonte="/Design de logotipo de ensino dourado.png" 
-                  alt="Logotipo SKYLINE" 
-                  nome sim classe="w-16 h-16 objeto-conter"
+      {/* FOOTER */}
+      <footer className="bg-slate-900 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-12">
+            {/* Logo e descrição */}
+            <div>
+              <div className="flex items-center space-x-3 mb-4">
+                <img 
+                  src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop" 
+                  alt="Logo CYBERLOCK" 
+                  className="w-16 h-16 object-contain rounded-2xl"
                 />
-                <extensão nome sim classe="texto-2xl fonte-negrito">HORIZONTE</extensão>
-              </dividir>
-              <p nome sim classe="texto-cinza-400 levando-relaxado">
- Construindo o futuro através de projetos inovadores que se desestacam 
- sem horizonte urbano.
+                <span className="text-2xl font-bold">CYBERLOCK</span>
+              </div>
+              <p className="text-gray-400 leading-relaxed">
+                Construindo o futuro através de projetos inovadores que se destacam 
+                no horizonte urbano.
               </p>
-            </dividir>
+            </div>
 
             {/* Links rápidos */}
-            <dividir>
-              <h3 nome sim classe="texto-xl fonte-negrito mb-6">Links Rápidos</h3>
-              <ul nome sim classe="espaço-y-3">
+            <div>
+              <h3 className="text-xl font-bold mb-6">Links Rápidos</h3>
+              <ul className="space-y-3">
                 {[
-                  { rótulo: 'Projetos', id: 'projetos' },
-                  { rótulo: 'Sobre', id: 'sobre' },
-                  { rótulo: 'Contato', id: 'contato' }
-                ].mapa((link) => (
-                  <eu chave={link.id}>
-                    <botão
-                      ao clicar={() => rugido parágrafo a sessão(link.id)}
- nome da classe="text-gray-400 hover:text-sky-400 núcleos de transição"
+                  { label: 'Projetos', id: 'projetos' },
+                  { label: 'Sobre', id: 'sobre' },
+                  { label: 'Contato', id: 'contato' }
+                ].map((link) => (
+                  <li key={link.id}>
+                    <button
+                      onClick={() => scrollToSection(link.id)}
+                      className="text-gray-400 hover:text-cyan-400 transition-colors"
                     >
-                      {link.rótulo}
-                    </botão>
-                  </ue>
+                      {link.label}
+                    </button>
+                  </li>
                 ))}
               </ul>
-            </dividir>
+            </div>
 
             {/* Criadores */}
-            <dividir>
-              <h3 nome sim classe="texto-xl fonte-negrito mb-6">Criadores</h3>
-              <dividir nome sim classe="itens flexíveis-espaço central-x-4">
-                {/* TROQUE AQUI: Substitua pela foto do criador */}
-                <imagem nome sim classe="" />
-</dividir>
- />
-                <dividir>
-                  <h4 nome sim classe="fonte-semibold">João Felipe Nevs</h4>
-                  <p nome sim classe="texto-cinza-400 texto-sm">Desenvolvimento e Design</p>
-                  <p nome sim classe="texto-cinza-500 texto-xs mt-1">SEST SENAT - MT Cuiabá</p>
-                </dividir>
-              </dividir>
-            </dividir>
-          </dividir>
+            <div>
+              <h3 className="text-xl font-bold mb-6">Criadores</h3>
+              <div className="flex items-center space-x-4">
+                <img 
+                  src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=64&h=64&fit=crop"
+                  alt="João Felipe Nevs"
+                  className="w-16 h-16 object-cover rounded-full border-2 border-cyan-400"
+                />
+                <div>
+                  <h4 className="font-semibold">João Felipe Nevs</h4>
+                  <p className="text-gray-400 text-sm">Desenvolvimento e Design</p>
+                  <p className="text-gray-500 text-xs mt-1">SEST SENAT - MT Cuiabá</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <dividir nome sim classe="border-t border-gray-700 mt-12 pt-8 centro de texto">
-            <p nome sim classe="texto-cinza-400">
- © CYBERLOCK 2024. Todos os direitos reservados.
+          <div className="border-t border-gray-700 mt-12 pt-8 text-center">
+            <p className="text-gray-400">
+              © CYBERLOCK 2024. Todos os direitos reservados.
             </p>
-          </dividir>
-        </dividir>
-      </rodapé>
-    </dividir>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 }
 
-exportar padrão Aplicativo;
+export default App;
