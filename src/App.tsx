@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Menu, X, MapPin, Palette, Leaf, Mail, Phone, MapPin as MapPinIcon, ArrowRight, Building2, Users, Award } from 'lucide-react';
 
 function App() {
